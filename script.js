@@ -5,28 +5,48 @@ $(document).ready(function(){
   $main = $('main');
 
   $button.on('click', function(event){
-    // console.log('hi');
-    text1 = $('#text1').val();
-    text2 = $('#text2').val();
-    // console.log(text1);
-    // console.log(text2);
+  text1 = $('#text1').val();
+  text2 = $('#text2').val();
+
+  // https://www.reddit.com/r/ + text + /.json?count=25&after= + after
+
 
 
   $.get('http://www.reddit.com/r/' + text1 + '.json')
     .done(function(data1){
-      // console.log(data1);
+      // console.log(data1.data.after);
       var author1 = [];
+      var titles1 = [];
+      var thumbs1 = [];
+      var score1 = [];
       var author2 = [];
-      for(var i = 0; i < data1.data.children.length; i +=1){
-        author1.push(data1.data.children[i].data.author);
+      var titles2 = [];
+      var thumbs2 = [];
+      var score2 = [];
+      var listings1 = data1.data.children;
+      for(var i = 0; i < listings1.length; i +=1){
+        author1.push({
+          "author":(listings1[i].data.author),
+          "title":(listings1[i].data.title),
+          "thumbnail":(listings1[i].data.thumnail),
+          "score":(listings1[i].data.score),
+        })
       }
       $.get('http://www.reddit.com/r/' + text2 + '.json')
         .done(function(data2){
-        for(var i = 0; i < data2.data.children.length; i +=1){
-          author2.push(data2.data.children[i].data.author)
+          var listings2 = data2.data.children;
+
+          // console.log(data2.data.after)
+        for(var i = 0; i < listings2.length; i +=1){
+          author2.push({
+            "author":(listings2[i].data.author),
+            "title":(listings2[i].data.title),
+            "thumbnail":(listings2[i].data.thumnail),
+            "score":(listings2[i].data.score),
+          })
         }
-          // console.log(author2);
-          // console.log(author1);
+          console.log(author2);
+          console.log(author1);
           function compareArrays(arr1, arr2){
             var result = [];
             for(var i = 0; i < arr2.length; i +=1){
@@ -36,9 +56,9 @@ $(document).ready(function(){
             }
             return result;
           }
-          var crossPosters = compareArrays(author1, author2);
-          console.log(crossPosters);
-          $main.text((crossPosters.join(', ')));
+          // var crossPosters = compareArrays(author1, author2);
+          // console.log(crossPosters);
+          // $main.text((crossPosters.join(', ')));
       })
             // console.log(author1);
             // console.log(author2);
