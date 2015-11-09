@@ -3,23 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Mini Project</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style.css">
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="script.js">
     </script>
   </head>
   <body>
-    <h1>Reddit Search</h1>
-    <input id="text1" type="text" name="search" value="" autofocus placeholder="sub1">
-    <input id="text2" type="text" name="search" value=""  placeholder="sub2">
-    <button class="submit">Submit</button>
     <main>
-      <div id="left">
-
-      </div>
-      <div id="right">
-
-      </div>
+      <section>
+        <img src="https://www.redditstatic.com/about/assets/reddit-alien.png" alt="reddit alien">
+      </section>
     </main>
+    <footer>
+      <h1>find crossposters</h1>
+      <h2>type in the names of 2 subreddits below and see who has posts on the front page of both</h2>
+      <form>
+        <input id="text1" type="text" name="search" value="" placeholder="sub1" autofocus>
+        <input id="text2" type="text" name="search" value=""  placeholder="sub2">
+        <button class="search">Submit</button>
+      </form>
+    </footer>
   </body>
 </html>
